@@ -10,3 +10,4 @@ services:
     volumes:
       - ./sqlite/:/root/db/
     command: ['sqlite3 .open /root/db/database.db']
+    restart: always
