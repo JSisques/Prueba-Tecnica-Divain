@@ -5,7 +5,7 @@ module.exports = {
   async getMovementHistory() {
     logger.info('services/movementHistory.js | Entering getMovementHistory()');
 
-    const stockItems = await prisma.stock.findMany();
+    const stockItems = await prisma.movementHistory.findMany();
     return stockItems;
   },
 
@@ -13,9 +13,8 @@ module.exports = {
     logger.info('services/movementHistory.js | Entering getMovementHistoryBySku()');
 
     // Buscamos el historial de movimientos por su SKU
-    const history = await prisma.stock.findUnique({
+    const history = await prisma.movementHistory.findUnique({
       where: { sku },
-      include: { movements: true }, // Incluir los movimientos asociados
     });
 
     return history;
