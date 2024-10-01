@@ -15,17 +15,17 @@ module.exports = {
     }
   },
 
-  async getStockById(req, res) {
-    logger.info('controllers/stock.js - Entering getStockById()');
+  async getStockBySku(req, res) {
+    logger.info('controllers/stock.js - Entering getStockBySku()');
 
-    const { id } = req.params;
+    const { sku } = req.params;
 
-    if (!id) return res.status(httpCodes.StatusCodes.BAD_REQUEST).json({ error: 'No se ha indicado el ID del item a obtener' });
+    if (!sku) return res.status(httpCodes.StatusCodes.BAD_REQUEST).json({ error: 'No se ha indicado el SKU del item a obtener' });
 
-    logger.debug(`controllers/stock.js - Obteniendo stock con ID: ${id}`);
+    logger.debug(`controllers/stock.js - Obteniendo stock con SKU: ${sku}`);
 
     try {
-      const stockItem = await stockService.getStockById(id);
+      const stockItem = await stockService.getStockBySku(sku);
 
       if (!stockItem) {
         return res.status(httpCodes.StatusCodes.NOT_FOUND).json({ error: 'Stock no encontrado' });
@@ -33,7 +33,7 @@ module.exports = {
 
       return res.status(httpCodes.StatusCodes.OK).json(stockItem);
     } catch (error) {
-      res.status(httpCodes.StatusCodes.INTERNAL_SERVER_ERROR).json({ error: 'Ha habido un problema al obtener el stock para el ID solicitado' });
+      res.status(httpCodes.StatusCodes.INTERNAL_SERVER_ERROR).json({ error: 'Ha habido un problema al obtener el stock para el SKU solicitado' });
     }
   },
 
@@ -60,17 +60,17 @@ module.exports = {
   async updateStock(req, res) {
     logger.info('controllers/stock.js - Entering updateStock()');
 
-    const { id } = req.params;
+    const { sku } = req.params;
     const { quantity } = req.body;
 
-    if (!id) return res.status(httpCodes.StatusCodes.BAD_REQUEST).json({ error: 'No se ha indicado el ID del item a actualizar' });
+    if (!sku) return res.status(httpCodes.StatusCodes.BAD_REQUEST).json({ error: 'No se ha indicado el SKU del item a actualizar' });
     if (!quantity) return res.status(httpCodes.StatusCodes.BAD_REQUEST).json({ error: 'No se ha indicado la cantidad a actualizar' });
 
-    logger.debug(`controllers/stock.js - Actualizando stock con ID: ${id}`);
+    logger.debug(`controllers/stock.js - Actualizando stock con SKU: ${sku}`);
     logger.debug(`controllers/stock.js - Quantity: ${quantity}`);
 
     try {
-      const updatedStock = await stockService.updateStock(id, quantity);
+      const updatedStock = await stockService.updateStock(sku, quantity);
       res.status(httpCodes.StatusCodes.OK).json(updatedStock);
     } catch (error) {
       res.status(httpCodes.StatusCodes.INTERNAL_SERVER_ERROR).json({ error: 'Error al actualizar el ítem' });
@@ -80,14 +80,14 @@ module.exports = {
   async deleteStock(req, res) {
     logger.info('controllers/stock.js - Entering deleteStock()');
 
-    const { id } = req.params;
+    const { sku } = req.params;
 
-    if (!id) return res.status(httpCodes.StatusCodes.BAD_REQUEST).json({ error: 'No se ha indicado el ID del item a actualizar' });
+    if (!sku) return res.status(httpCodes.StatusCodes.BAD_REQUEST).json({ error: 'No se ha indicado el SKU del item a actualizar' });
 
-    logger.debug(`controllers/stock.js - Borrando stock con ID: ${id}`);
+    logger.debug(`controllers/stock.js - Borrando stock con SKU: ${sku}`);
 
     try {
-      const deletedStock = await stockService.deleteStock(id);
+      const deletedStock = await stockService.deleteStock(sku);
       res.status(httpCodes.StatusCodes.OK).json(deletedStock);
     } catch (error) {
       res.status(httpCodes.StatusCodes.INTERNAL_SERVER_ERROR).json({ error: 'Error al eliminar el stock' });

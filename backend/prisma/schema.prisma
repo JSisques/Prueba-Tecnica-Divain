@@ -11,15 +11,14 @@ datasource db {
 }
 
 model MovementHistory {
-  id        Int      @id @default(autoincrement())
-  type      String   // Puede ser 'entrada' o 'salida'
-  date      DateTime @default(now())
-  quantity  Int
-  stock     Stock    @relation(fields: [stockId], references: [id])
-  stockId   Int
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+    id        Int      @id @default(autoincrement())
+    quantity  Int
+    type      String   
+    createdAt DateTime @default(now())
+    
+    // Relación con el Stock
+    stockId   Int
+    stock     Stock    @relation(fields: [stockId], references: [id])
 }
 
 model Stock {
@@ -27,8 +26,18 @@ model Stock {
   sku      String @unique
   ean13    String @unique
   quantity Int
-  movements MovementHistory[]  // Relación uno a muchos con el historial de movimientos
 
+  // Relación con el historial de movimientos
+  movements MovementHistory[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model User {
+  id        Int      @id @default(autoincrement())
+  email  String   @unique
+  password  String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }

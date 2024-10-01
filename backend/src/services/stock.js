@@ -9,11 +9,11 @@ module.exports = {
     return stockItems;
   },
 
-  async getStockById(id) {
-    logger.info('services/stock.js - Entering getStockById()');
+  async getStockBySku(sku) {
+    logger.info('services/stock.js - Entering getStockBySku()');
 
     const stockItem = await prisma.stock.findUnique({
-      where: { id: Number(id) },
+      where: { sku: sku },
     });
 
     return stockItem;
@@ -33,22 +33,22 @@ module.exports = {
     return newStock;
   },
 
-  async updateStock(id, quantity) {
+  async updateStock(sku, quantity) {
     logger.info('services/stock.js - Entering updateStock()');
 
     const updatedStock = await prisma.stock.update({
-      where: { id: Number(id) },
-      data: { quantity },
+      where: { sku: sku },
+      data: { quantity: quantity },
     });
 
     return updatedStock;
   },
 
-  async deleteStock(id) {
+  async deleteStock(sku) {
     logger.info('services/stock.js - Entering deleteStock()');
 
     const deletedStock = await prisma.stock.delete({
-      where: { id: Number(id) },
+      where: { sku: sku },
     });
 
     return deletedStock;
