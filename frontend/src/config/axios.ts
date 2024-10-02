@@ -3,7 +3,7 @@ import useAuth from '../hooks/useAuth';
 import { useSession } from 'next-auth/react';
 
 const axiosInstance = axios.create({
-  baseURL: process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4224/api/v1',
+  baseURL: process.env.NEXT_PUBLIC_API_URL || 'http://divain-backend:4224/api/v1',
   headers: {
     'Content-Type': 'application/json',
   },

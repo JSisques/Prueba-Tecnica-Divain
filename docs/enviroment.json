@@ -1,0 +1,22 @@
+{
+    "clientName": "Thunder Client",
+    "environmentName": "divain",
+    "environmentId": "0823be1d-19ed-4afb-8516-2faad8e012a3",
+    "dateExported": "2024-10-02T19:53:29.286Z",
+    "version": "1.2",
+    "variables": [
+        {
+            "name": "server",
+            "value": "localhost:4224"
+        },
+        {
+            "name": "path",
+            "value": "/api/v1"
+        },
+        {
+            "name": "token",
+            "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3Mjc4NjY0MzEsImV4cCI6MTcyNzg3MDAzMX0.iKWmU3fIBYl_PrUB4BqGUDTujv-g5uXys8zuxv3svtA"
+        }
+    ],
+    "ref": "jK_WMspPECrY-1pLq2s5WozuKYlRVhX2Upm_fQpcrK8Rk8NAJBoIqNEvh0P7FkI8"
+}

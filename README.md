@@ -2,7 +2,7 @@
 
 ## Introducción
 
-Este proyecto es una plataforma de gestión de stock que permite a los usuarios registrar entradas y salidas de productos, visualizar el historial de movimientos y administrar los productos en inventario. Está compuesto por un frontend desarrollado con **React** y **Next.js**, y un backend basado en **Node.js** y **Express**. El proyecto se ejecuta utilizando **Docker Compose**, lo que facilita su despliegue y configuración.
+Este proyecto es una plataforma de gestión de stock que permite a los usuarios registrar entradas y salidas de productos, visualizar el historial de movimientos y administrar los productos en inventario. Está compuesto por un frontend desarrollado con React y Next.js, y un backend basado en Node.js y Express.
 
 ## Frontend
 
@@ -10,17 +10,19 @@ Este proyecto es una plataforma de gestión de stock que permite a los usuarios 
 
 El frontend está desarrollado utilizando:
 
-- **React**: Para la construcción de la interfaz de usuario.
-- **Next.js**: Para la generación del servidor del frontend y manejo de la autenticación.
+- **React:** Para la construcción de la interfaz de usuario.
+- **Next.js:** Para la generación del servidor del frontend y manejo de la autenticación.
 
 ### Páginas Principales
 
-1. **Sign In** (`/signin`):
-   - Página de inicio de sesión donde los usuarios pueden ingresar con sus credenciales.
-2. **Sign Up** (`/signup`):
-   - Página de registro para crear una nueva cuenta en la plataforma.
-3. **Home** (`/home`):
-   - Página principal donde se muestran las operaciones del stock, incluyendo la capacidad de modificar cantidades, ver detalles de productos y registrar movimientos de entrada o salida.
+1. Sign In (`/api/auth/signin`):
+   Página de inicio de sesión donde los usuarios pueden ingresar con sus credenciales.
+
+2. Sign Up (`/auth/signup`):
+   Página de registro para crear una nueva cuenta en la plataforma.
+
+3. Home (/):
+   Página principal donde se muestran las operaciones del stock, incluyendo la capacidad de modificar cantidades y registrar movimientos de entrada o salida.
 
 ### Guía de Uso
 
@@ -35,12 +37,42 @@ El frontend está desarrollado utilizando:
 3. Pantalla Principal
 
 - Una vez logueado, serás redirigido a la pantalla principal que muestra el listado de stock.
-- En la columna "Modificar Stock", puedes ajustar la cantidad de stock sumando o restando la cantidad original.
+- En la columna "Sumar o restar cantidad", puedes ajustar la cantidad de stock sumando o restando la cantidad original.
 - Al final de la página, podrás ver un listado con el historial de movimientos.
 
 ### Puertos
 
-El frontend se ejecuta en el puerto **3000**, lo cual permite acceder a la interfaz de usuario mediante `http://localhost:3000`.
+El frontend se ejecuta en el puerto 8080, lo cual permite acceder a la interfaz de usuario mediante http://localhost:8080.
+
+### Instalación y Ejecución del Frontend
+
+Para ejecutar el frontend, sigue estos pasos:
+
+1. Navega al directorio del frontend:
+
+```bash
+cd frontend
+```
+
+2. Instala las dependencias:
+
+```bash
+npm install
+```
+
+3. Genera los archivos de producción:
+
+```bash
+npm run build
+```
+
+4. Inicia el servidor del frontend:
+
+```bash
+npm run start
+```
+
+El frontend estará disponible en http://localhost:8080.
 
 ## Backend
 
@@ -48,70 +80,79 @@ El frontend se ejecuta en el puerto **3000**, lo cual permite acceder a la inter
 
 El backend está construido con:
 
-- **Node.js**: Para ejecutar el servidor.
+- **Node.js:** Para ejecutar el servidor.
 - **Express**: Para el manejo de rutas y controladores.
 - **SQLite**: Base de datos usada para almacenar la información de stock y movimientos.
 
 ### Rutas
 
-1. **Autenticación**
+1. Autenticación
 
-   - `/auth/signup`: Ruta para registrar nuevos usuarios.
-   - `/auth/signin`: Ruta para iniciar sesión y obtener un token de autenticación.
+- `/auth/signup`: Ruta para registrar nuevos usuarios.
+- `/auth/signin`: Ruta para iniciar sesión y obtener un token de autenticación.
 
-2. **Stock**
+2. Stock
 
-   - `/api/v1/stock`: Permite obtener la lista de productos en stock y actualizar la cantidad de un producto.
+- `/api/v1/stock`: Permite obtener la lista de productos en stock y actualizar la cantidad de un producto.
 
-3. **Movement History**
-   - `/api/v1/movementHistory`: Permite obtener el historial de movimientos de stock, así como registrar nuevas entradas o salidas.
+3. Movement History
+
+- `/api/v1/movementHistory`: Permite obtener el historial de movimientos de stock, así como registrar nuevas entradas o salidas.
+
+### Puertos
+
+El backend se ejecuta en el puerto 4224 bajo la ruta `/api/v1`.
 
 ### Documentación API
 
 El backend cuenta con una documentación detallada de las rutas y los endpoints disponibles, accesible a través de Swagger en la ruta:
 
-- `http://localhost:4224/docs`
+- [http://localhost:4224/docs](http://localhost:4224/docs)
 
-### Puertos
+### Instalación y Ejecución del Backend
 
-El backend se ejecuta en el puerto **4224** bajo la ruta `/api/v1`.
+Para ejecutar el backend, sigue estos pasos:
 
-## Instalación y Ejecución
-
-### Requisitos Previos
-
-- **Docker**: Asegúrate de tener Docker y Docker Compose instalados en tu máquina.
-
-### Pasos
-
-1. Clona el repositorio del proyecto:
+1. Navega al directorio del backend:
 
 ```bash
-   git clone https://github.com/JSisques/Prueba-Tecnica-Divain.git
+cd backend
 ```
 
-2. Navega al directorio del proyecto:
+2. Instala las dependencias:
 
 ```bash
-cd proyecto-stock
+npm install
 ```
 
-3. Ejecuta el proyecto con Docker Compose:
+3. Inicializa Prisma:
 
 ```bash
-docker-compose up -d
+npm run prisma:init
 ```
 
-Esto lanzará tanto el frontend como el backend, que serán accesibles en los siguientes puertos:
+4. Genera el cliente Prisma:
 
-- **Frontend:** http://localhost:3000
-- **Backend API:** http://localhost:4224/api/v1
-- **Swagger Docs:** http://localhost:4224/docs
+```bash
+npm run prisma:generate
+```
 
-npx prisma init
+5. Aplica las migraciones a la base de datos:
 
-npx prisma migrate dev --name init_db
-npx prisma generate
-d
+```bash
+npm run prisma:migrate
+```
 
-docs en la ruta /docs
+6. Llena la base de datos con datos iniciales:
+
+```bash
+npm run database:populate
+```
+
+7. Inicia el servidor del backend:
+
+```bash
+npm run start
+```
+
+El backend estará disponible en http://localhost:4224/api/v1.

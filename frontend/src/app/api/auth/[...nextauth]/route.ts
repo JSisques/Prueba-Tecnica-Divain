@@ -2,6 +2,7 @@ import nextAuth from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
 import { login } from '../../../../util/api';
 import { User } from '../../../../interfaces/User';
+import axiosInstance from '@/config/axios';
 
 const handler = nextAuth({
   providers: [
@@ -24,14 +25,14 @@ const handler = nextAuth({
         if (!password || typeof password !== 'string') return null;
 
         try {
-          const response = await login({ email, password });
+          const response = await axiosInstance.post('/auth/login', { email, password });
           console.log(response);
 
           // Add logic here to look up the user from the credentials supplied
           const user: User = {
-            id: response.id,
-            email: response.email,
-            accessToken: response.token,
+            id: response.data.id,
+            email: response.data.email,
+            accessToken: response.data.token,
           };
 
           if (user) {

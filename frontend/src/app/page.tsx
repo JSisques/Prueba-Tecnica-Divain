@@ -11,9 +11,11 @@ import { Stock } from '@/interfaces/Stock';
 import MovementTable from '@/components/movementHistoryTable/MovementHistoryTable';
 
 import './globals.css';
+import { useRouter } from 'next/navigation';
 
 export default function Home() {
   const { data: session, status } = useSession();
+  const router = useRouter();
 
   const [isLoading, setIsLoading] = useState(true);
 
@@ -98,6 +100,10 @@ export default function Home() {
         setIsLoading(false);
       });
   };
+
+  if (status === 'unauthenticated') {
+    router.push('/api/auth/signin');
+  }
 
   if (isLoading) {
     return (

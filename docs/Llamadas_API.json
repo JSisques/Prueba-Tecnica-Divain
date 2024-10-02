@@ -1,0 +1,210 @@
+{
+    "clientName": "Thunder Client",
+    "collectionName": "Divain",
+    "collectionId": "1ac48a96-ae9f-4093-a9fc-d99f353752ba",
+    "dateExported": "2024-10-02T19:52:36.801Z",
+    "version": "1.2",
+    "folders": [
+        {
+            "_id": "1dfbb16b-a6f7-4a06-947e-3a4754f84027",
+            "name": "Auth",
+            "containerId": "",
+            "created": "2024-10-01T13:43:57.320Z",
+            "sortNum": 10000
+        },
+        {
+            "_id": "b81bdf56-5205-470b-981a-8b857fc0e4b1",
+            "name": "Stock",
+            "containerId": "",
+            "created": "2024-10-01T13:58:42.290Z",
+            "sortNum": 20000
+        },
+        {
+            "_id": "be1ee065-31b2-4fad-a510-ae15b96f3492",
+            "name": "Record",
+            "containerId": "",
+            "created": "2024-10-01T13:58:54.798Z",
+            "sortNum": 30000
+        }
+    ],
+    "requests": [
+        {
+            "_id": "ccc766f5-a1b1-449d-8025-9a80b6fa73c5",
+            "colId": "1ac48a96-ae9f-4093-a9fc-d99f353752ba",
+            "containerId": "1dfbb16b-a6f7-4a06-947e-3a4754f84027",
+            "name": "Signup",
+            "url": "{{server}}{{path}}/auth/signup",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2024-10-01T13:44:05.381Z",
+            "modified": "2024-10-01T13:58:03.559Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"email\": \"javi@me.com\",\n  \"password\": \"1234\"\n}",
+                "form": []
+            }
+        },
+        {
+            "_id": "0a84f565-1cca-4194-9c09-b8ac777280eb",
+            "colId": "1ac48a96-ae9f-4093-a9fc-d99f353752ba",
+            "containerId": "1dfbb16b-a6f7-4a06-947e-3a4754f84027",
+            "name": "Login",
+            "url": "{{server}}{{path}}/auth/login",
+            "method": "POST",
+            "sortNum": 20000,
+            "created": "2024-10-01T13:58:13.987Z",
+            "modified": "2024-10-01T13:58:26.610Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"email\": \"javi@me.com\",\n  \"password\": \"1234\"\n}",
+                "form": []
+            }
+        },
+        {
+            "_id": "e94bc96f-ee12-4114-8530-548fadc6a8b6",
+            "colId": "1ac48a96-ae9f-4093-a9fc-d99f353752ba",
+            "containerId": "b81bdf56-5205-470b-981a-8b857fc0e4b1",
+            "name": "Get Stock",
+            "url": "{{server}}{{path}}/stock",
+            "method": "GET",
+            "sortNum": 30000,
+            "created": "2024-10-01T13:59:03.680Z",
+            "modified": "2024-10-01T14:01:59.297Z",
+            "headers": [],
+            "auth": {
+                "type": "bearer",
+                "bearer": "{{token}}"
+            }
+        },
+        {
+            "_id": "e5fcb063-047d-4375-9e6a-599ac769f8f4",
+            "colId": "1ac48a96-ae9f-4093-a9fc-d99f353752ba",
+            "containerId": "be1ee065-31b2-4fad-a510-ae15b96f3492",
+            "name": "Get Movement History",
+            "url": "{{server}}{{path}}/movementHistory",
+            "method": "GET",
+            "sortNum": 40000,
+            "created": "2024-10-01T14:13:13.600Z",
+            "modified": "2024-10-01T15:21:46.435Z",
+            "headers": [],
+            "auth": {
+                "type": "bearer",
+                "bearer": "{{token}}"
+            }
+        },
+        {
+            "_id": "a3a84975-bb15-449a-b2ee-33768beafc58",
+            "colId": "1ac48a96-ae9f-4093-a9fc-d99f353752ba",
+            "containerId": "b81bdf56-5205-470b-981a-8b857fc0e4b1",
+            "name": "Get Stock By SKU",
+            "url": "{{server}}{{path}}/stock/SKU002",
+            "method": "GET",
+            "sortNum": 50000,
+            "created": "2024-10-01T14:49:19.356Z",
+            "modified": "2024-10-01T14:51:45.143Z",
+            "headers": [],
+            "auth": {
+                "type": "bearer",
+                "bearer": "{{token}}"
+            }
+        },
+        {
+            "_id": "2190b6be-9137-4a20-86b5-62c6450c7e57",
+            "colId": "1ac48a96-ae9f-4093-a9fc-d99f353752ba",
+            "containerId": "be1ee065-31b2-4fad-a510-ae15b96f3492",
+            "name": "Get Movement History By Sku",
+            "url": "{{server}}{{path}}/movementHistory/SKU002",
+            "method": "GET",
+            "sortNum": 50000,
+            "created": "2024-10-01T15:23:08.120Z",
+            "modified": "2024-10-01T15:23:30.858Z",
+            "headers": [],
+            "auth": {
+                "type": "bearer",
+                "bearer": "{{token}}"
+            }
+        },
+        {
+            "_id": "622bf36f-f395-4789-99ec-dc5d75305430",
+            "colId": "1ac48a96-ae9f-4093-a9fc-d99f353752ba",
+            "containerId": "b81bdf56-5205-470b-981a-8b857fc0e4b1",
+            "name": "Add Stock",
+            "url": "{{server}}{{path}}/stock",
+            "method": "POST",
+            "sortNum": 60000,
+            "created": "2024-10-01T14:49:51.098Z",
+            "modified": "2024-10-01T14:50:42.598Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n    \"sku\": \"SKU003\",\n    \"ean13\": \"1234567890125\",\n    \"quantity\": 10\n}",
+                "form": []
+            },
+            "auth": {
+                "type": "bearer",
+                "bearer": "{{token}}"
+            }
+        },
+        {
+            "_id": "ec61eff7-6345-4ec2-a2b4-9b5bfcc944f8",
+            "colId": "1ac48a96-ae9f-4093-a9fc-d99f353752ba",
+            "containerId": "b81bdf56-5205-470b-981a-8b857fc0e4b1",
+            "name": "Update Stock",
+            "url": "{{server}}{{path}}/stock/SKU003",
+            "method": "PUT",
+            "sortNum": 70000,
+            "created": "2024-10-01T14:50:48.975Z",
+            "modified": "2024-10-01T14:51:29.560Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n    \"quantity\": 1000\n}",
+                "form": []
+            },
+            "auth": {
+                "type": "bearer",
+                "bearer": "{{token}}"
+            }
+        },
+        {
+            "_id": "733ebe82-030e-4c57-a7e0-bbb9225642eb",
+            "colId": "1ac48a96-ae9f-4093-a9fc-d99f353752ba",
+            "containerId": "b81bdf56-5205-470b-981a-8b857fc0e4b1",
+            "name": "Delete Stock",
+            "url": "{{server}}{{path}}/stock/SKU003",
+            "method": "DELETE",
+            "sortNum": 80000,
+            "created": "2024-10-01T14:50:50.968Z",
+            "modified": "2024-10-01T14:51:11.009Z",
+            "headers": [],
+            "auth": {
+                "type": "bearer",
+                "bearer": "{{token}}"
+            }
+        },
+        {
+            "_id": "1d837bb6-6e9b-4907-9bfe-28ab498b0f8b",
+            "colId": "1ac48a96-ae9f-4093-a9fc-d99f353752ba",
+            "containerId": "be1ee065-31b2-4fad-a510-ae15b96f3492",
+            "name": "Add Movement",
+            "url": "{{server}}{{path}}/movementHistory",
+            "method": "POST",
+            "sortNum": 90000,
+            "created": "2024-10-01T15:01:07.873Z",
+            "modified": "2024-10-02T10:54:39.271Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"sku\": \"SKU002\",\n  \"quantity\": 50,\n  \"type\": \"EXIT\"\n}",
+                "form": []
+            },
+            "auth": {
+                "type": "bearer",
+                "bearer": "{{token}}"
+            }
+        }
+    ],
+    "ref": "ENmZPG9xZoD7GivIVzSzVnY5yZhaBWx_f0XViNSfIUC3tjbrs9EhAHk-wj-EcX1WqYQNrrzWSVxD1vP21QF0hQ"
+}

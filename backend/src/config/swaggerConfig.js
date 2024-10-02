@@ -10,6 +10,16 @@ const swaggerDefinition = {
     version: '1.0.0',
     description: 'Documentación del backend de la prueba técnica',
   },
+  components: {
+    securitySchemes: {
+      BearerAuth: {
+        type: 'http',
+        scheme: 'bearer',
+        bearerFormat: 'JWT',
+      },
+    },
+  },
+  security: [{ BearerAuth: [] }],
 };
 
 // Opciones para la configuración de Swagger
