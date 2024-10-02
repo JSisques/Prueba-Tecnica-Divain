@@ -16,5 +16,5 @@ COPY . .
 # Exponemos el puerto
 EXPOSE 4224
 
-# Ejecutamos la aplicación
-CMD ["npm", "start"]
+# Iniciamos el contenedor
+CMD ["sh", "-c", "npm run prisma:generate && npm run prisma:migrate && npm run database:populate && npm start"]

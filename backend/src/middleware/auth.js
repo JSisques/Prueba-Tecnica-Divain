@@ -34,8 +34,7 @@ exports.verifyToken = (req, res, next) => {
 
     // Añadimos la información del usuario al objeto de solicitud
     req.user = decoded;
-    req.userId = decoded.id;
-    logger.info(`middleware/auth.js | Token validado, usuarioID: ${req.userId}`);
+    logger.info(`middleware/auth.js | Token validado`);
 
     next();
   });

@@ -21,14 +21,19 @@ module.exports = {
   async getMovementHistoryBySku(req, res) {
     logger.info('controllers/movementHistory.js | Entering getMovementHistoryBySKU()');
 
-    const { sku } = req.params;
-
-    if (!sku) return res.status(httpCodes.StatusCodes.BAD_REQUEST).json({ error: 'No se ha indicado el SKU del item a obtener' });
-
-    logger.debug(`controllers/movementHistory.js | Obteniendo stock con SKU: ${sku}`);
-
     try {
-      const movementHistory = await movementHistoryService.getMovementHistoryBySku(sku);
+      const { sku } = req.params;
+
+      if (!sku) return res.status(httpCodes.StatusCodes.BAD_REQUEST).json({ error: 'No se ha indicado el SKU del item a obtener' });
+
+      logger.debug(`controllers/movementHistory.js | Obteniendo stock con SKU: ${sku}`);
+
+      // Buscamos el ítem de stock por su SKU
+      const stockItem = await stockService.getStockBySku(sku);
+
+      logger.debug(`controllers/movementHistory.js | Obtenido el item con SKU ${stockItem.sku}`);
+
+      const movementHistory = await movementHistoryService.getMovementHistoryById(stockItem.id);
 
       if (!movementHistory) {
         return res.status(httpCodes.StatusCodes.NOT_FOUND).json({ error: `Historial de movimientos para el item con SKU ${sku} no encontrado` });
@@ -80,7 +85,7 @@ module.exports = {
       logger.debug(`controllers/movementHistory.js | Stock para el item con SKU ${stockItem.sku} actualizado a ${stockItem.quantity}`);
 
       // Creamos el movimiento de stock
-      const movement = await movementHistoryService.addMovementHistory(stockItem.id, type, updatedQuantity);
+      const movement = await movementHistoryService.addMovementHistory(stockItem.id, type, quantity);
 
       res.status(httpCodes.StatusCodes.CREATED).json(movement);
     } catch (error) {

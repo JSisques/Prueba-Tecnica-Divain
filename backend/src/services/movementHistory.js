@@ -9,12 +9,12 @@ module.exports = {
     return stockItems;
   },
 
-  async getMovementHistoryBySku(sku) {
-    logger.info('services/movementHistory.js | Entering getMovementHistoryBySku()');
+  async getMovementHistoryById(id) {
+    logger.info('services/movementHistory.js | Entering getMovementHistoryById()');
 
     // Buscamos el historial de movimientos por su SKU
-    const history = await prisma.movementHistory.findUnique({
-      where: { sku },
+    const history = await prisma.movementHistory.findMany({
+      where: { stockId: id },
     });
 
     return history;
